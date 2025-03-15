@@ -10,6 +10,9 @@ import java.util.List;
 
 
 public interface PatientRepository  extends JpaRepository<Patient, Long> {
-
+    List<Patient> findByNomContains(String mc);
+    Patient findByNom(String name);
+    @Query("select  p from Patient p where p.Name like :x")
+    List<Patient> search(@Param("x") String mc);
 
 }
