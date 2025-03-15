@@ -1,13 +1,11 @@
 package org.example.patient_app.entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.Collection;
 import java.util.Date;
 
 @Entity
@@ -16,7 +14,9 @@ public class Patient {
     @Id  @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String Name;
+    @Temporal(TemporalType.DATE) // pour garder uniquement la date pas d'heure et tout
     private Date dateOfBirth;
     private boolean malade;
-    private int score;
+    @OneToMany(mappedBy="patient",fetch=FetchType.LAZY)
+    private Collection<RendezVous> rendezVous;
 }

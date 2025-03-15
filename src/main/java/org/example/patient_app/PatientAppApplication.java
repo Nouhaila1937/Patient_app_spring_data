@@ -16,7 +16,7 @@ public class PatientAppApplication implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-     patient.save();
+
 
     }
 }
